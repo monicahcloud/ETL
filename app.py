@@ -38,19 +38,16 @@ def welcome():
 def authors():
     result = {}
     authors = []
-    author_resuletset = engine.execute(
-        'select name , born , description from author')
-    result['count'] = author_resuletset.rowcount
+    author_resultset = engine.execute(
+        'select author, dob, description from authors')
+    result['count'] = author_resultset.rowcount
 
-    for author_row in author_resuletset:
+    for author_row in author_resultset:
         this_author = {}
-        quotes = []
-        this_author['name'] = author_row.name
+        this_author['author'] = author_row.author
         this_author['description'] = author_row.description
-        this_author['born'] = author_row.born
-        quotes = quotes_for_author(author_row.name)
-        this_author['count'] = len(quotes)
-        this_author['quotes'] = quotes
+        this_author['dob'] = author_row.dob
+     
         authors.append(this_author)
 
     result['details'] = authors
@@ -61,19 +58,18 @@ def authors():
 def quotes():
 
     result = {}
-    result_set = engine.execute('''select id, author_name, text
-    from quotes q inner join author a on q.author_name = a.name
-    order by id''')
+    result_set = engine.execute('''select t.author, quote, tags
+    from quotes q inner join tags t on q.id = t.id
+    order by t.id''')
 
     result['total'] = result_set.rowcount
 
     quotes = []
     for row in result_set:
         quote = {}
-        quote['text'] = row.text
-        quote['author'] = row.author_name
-        tags = tags_for_the_quote(row.id)
-        quote['tags'] = tags
+        quote['quotes'] = row.quote
+        quote['author'] = row.author
+        quote['tags'] = row.tags
         quotes.append(quote)
 
     result['quotes'] = quotes
