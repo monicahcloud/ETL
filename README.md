@@ -45,10 +45,4 @@ Created multiple routes for endpoint testing.
 
         -Top 10 Tags
 
-We have multiple endpoint routes but not all of them were required for the assigment so the route were not completed(broken). 
-Test_ground: Contains incomplete/old Codes for the assigments.
 
- We have multiple copies of some of the code since, we didn't want to overwrite any team members code in testing process. 
-pseudocode.txt: Brainstorm text file where we planned and organized our approach to tackle this project. Also wrote some code to build out our Final work. Written process of how to mediate work in this large group.
-
-Pg_SQL_quthors.sql: Postgres SQL DB  
